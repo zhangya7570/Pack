@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+</head>
+<body>
+    <div style="text-align: center">
+        <p>页面onload后发送数据到react native</p>
+        <p style="text-align: center">收到RN发送的用户登录token是: <span id="data"></span></p>
+        <p id="received"></p>
+    </div>
+    <script>
+        function sendToWeb(data) {
+            var span= document.getElementById('data')
+            span.innerHTML=data;
+        }
+        window.onload=function() {
+            setTimeout(function(){
+                window.postMessage('this message is from webPage');
+            },200)
+        }
+
+        // window.onload = function() {
+        //     document.addEventListener('message', function(msg) {
+        //         var p=document.getElementById('received')
+        //         p.innerHTML=msg.data
+        //     });
+        // }
+    </script>
+</body>
+</html>

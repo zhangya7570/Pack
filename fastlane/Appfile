@@ -1,0 +1,5 @@
+app_identifier("com.pack") # The bundle identifier of your app
+apple_id("kevin7570@hotmail.com") # Your Apple email address
+
+#itc_team_id("xxxxxxx") # iTunes Connect Team ID
+#team_id("UD5YXYYV23") # Developer Portal Team ID

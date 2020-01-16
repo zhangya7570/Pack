@@ -1,0 +1,52 @@
+{
+  "name": "Pack",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "lint": "eslint .",
+    "buildJsBundle": "react-native bundle --platform android --entry-file index.js --bundle-output ./bundle/android/android.bundle --assets-dest ./bundle/android --dev false",
+    "push": "code-push release-react Pack android --t 1.0.2 --dev false --d Production --des “本次更新描述”"
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.6.2",
+    "lottie-ios": "3.0.3",
+    "lottie-react-native": "3.0.2",
+    "mobx": "^5.9.4",
+    "mobx-react": "^5.4.3",
+    "react": "^16.8.3",
+    "react-native": "^0.59.4",
+    "react-native-code-push": "^5.7.0",
+    "react-native-elements": "^1.2.7",
+    "react-native-gesture-handler": "^1.2.1",
+    "react-native-splash-screen": "^3.2.0",
+    "react-native-swiper": "^1.5.14",
+    "react-native-touch-id": "^4.4.1",
+    "react-native-vector-icons": "^6.6.0",
+    "react-navigation": "^3.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/plugin-proposal-decorators": "^7.0.0-beta.47",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/preset-react": "^7.0.0-beta.47",
+    "@babel/runtime": "^7.0.0-beta.47",
+    "@react-native-community/eslint-config": "^0.0.3",
+    "babel-jest": "^24.5.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-react-native": "^5",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.5.0",
+    "metro-react-native-babel-preset": "^0.51.1",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

@@ -1,0 +1,63 @@
+# fastlane配置文件，定义fastlane可执行的动作
+
+default_platform(:ios)
+
+def upload_to_pgyer(desc="", mode="release")
+  description = "正式环境"
+  if mode == "debug"
+    description = "测试环境"
+  end
+  # pgyer上传至pgyer进行内测
+  pgyer(
+    api_key: "8bf3744d2077322e4cfacf2af5ca45c2",
+    user_key: "cf6e0d3b9f2fb34d6c4088cecbbb9ee1",
+    update_description: "#{desc}\n#{description}",
+    install_type:"2",
+    password:"123"
+  )
+end
+
+
+# 所有lane动作开始前都会执行这里的命令，例如指定打master上的包或执行project clean
+before_all do |options|
+  #ensure_git_branch
+  #ensure_git_status_clean
+end
+
+############################################### iOS #############################################
+platform :ios do
+  desc "构建一个测试环境版本上传至pgyer"
+  lane :debug do|option|
+    build_sign_app(mode: "debug")
+    upload_to_pgyer(desc: option[:desc], mode: "debug")
+  end
+
+  desc "构建一个正式环境版本上传至pgyer"
+  lane :release do|option|
+    build_sign_app
+    upload_to_pgyer(desc: option[:desc])
+  end
+
+end
+
+
+
+
+############################################### Android ##########################################
+platform :android do
+
+  desc "构建一个测试环境版本上传至pgyer"
+  lane :debug do|option|
+    gradle(task: ‘clean‘, project_dir: ‘android/‘)
+    gradle(task: ‘assemble‘, build_type: ‘Debug‘, project_dir: ‘android/‘)
+    upload_to_pgyer(mode: "debug")
+  end
+
+  desc "构建一个正式环境版本上传至pgyer"
+  lane :release do|option|
+    gradle(task: ‘clean‘, project_dir: ‘android/‘)
+    gradle(task: ‘assemble‘, build_type: ‘Release‘, project_dir: ‘android/‘)
+    upload_to_pgyer(desc: option[:desc])
+  end
+
+end
